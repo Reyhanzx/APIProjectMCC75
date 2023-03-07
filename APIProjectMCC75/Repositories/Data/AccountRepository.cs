@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIProjectMCC75.Repositories.Data
 {
-    public class AccountRepositories : GeneralRepository<int, Account>
+    public class AccountRepository : GeneralRepository<int, Account>
     {
         private readonly MyContext context;
 
-        public AccountRepositories(MyContext context) : base(context)
+        public AccountRepository(MyContext context) : base(context)
         {
             this.context = context;
         }
@@ -19,8 +19,8 @@ namespace APIProjectMCC75.Repositories.Data
             int result = 0;
             Employee employee = new Employee
             {
-                Id= registerVM.Id,
                 OfficeCode = registerVM.OfficeCode,
+                ReportsTo= registerVM.ReportsTo,
                 FirstName = registerVM.FirstName,
                 LastName = registerVM.LastName,               
                 Email = registerVM.Email,
@@ -31,7 +31,7 @@ namespace APIProjectMCC75.Repositories.Data
 
             Account account = new Account
             {
-                Id = registerVM.Id,
+                Id = registerVM.OfficeCode,
                 Password = Hashing.HashPassword(registerVM.Password)
             };
             await context.Accounts.AddAsync(account);
@@ -39,7 +39,7 @@ namespace APIProjectMCC75.Repositories.Data
 
             AccountRole accountRole = new AccountRole
             {
-                AccountId = registerVM.Id,
+                AccountId = registerVM.OfficeCode,
                 RoleId = 2
             };
 
@@ -85,7 +85,7 @@ namespace APIProjectMCC75.Repositories.Data
             return await userdata;
         }
 
-        public async Task<IEnumerable<string>> GetRolesByNik(string key)
+        public async Task<IEnumerable<string>> GetRolesById(string key)
         {
             var getNik = context.Employees.FirstOrDefault(e => e.Email == key);
             return await context.AccountRoles.Where(ar => ar.AccountId == getNik.Id).Join(

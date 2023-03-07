@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIProjectMCC75.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230307130822_InitialCommit")]
+    [Migration("20230307142555_InitialCommit")]
     partial class InitialCommit
     {
         /// <inheritdoc />
@@ -183,7 +183,7 @@ namespace APIProjectMCC75.Migrations
                         .HasColumnType("int")
                         .HasColumnName("office_code");
 
-                    b.Property<int>("ReportsTo")
+                    b.Property<int?>("ReportsTo")
                         .HasColumnType("int")
                         .HasColumnName("reports_to");
 
@@ -475,8 +475,7 @@ namespace APIProjectMCC75.Migrations
                     b.HasOne("APIProjectMCC75.Models.Employee", "ReportTo")
                         .WithMany("Employees")
                         .HasForeignKey("ReportsTo")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Office");
 

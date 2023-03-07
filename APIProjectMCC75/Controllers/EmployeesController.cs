@@ -8,9 +8,9 @@ namespace APIProjectMCC75.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductLineController : BaseController<int, ProductLine, ProductLineRepository>
+    public class EmployeesController : BaseController<int, Employee, EmployeeRepository>
     {
-        public ProductLineController(ProductLineRepository repository) : base(repository)
+        public EmployeesController(EmployeeRepository repository) : base(repository)
         {
         }
     }

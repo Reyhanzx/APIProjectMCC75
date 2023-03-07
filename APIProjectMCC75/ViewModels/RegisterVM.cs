@@ -6,9 +6,10 @@ namespace APIProjectMCC75.ViewModels
 {
     public class RegisterVM
     {
-        public int Id { get; set; }
         [Display(Name = "Office code")]
         public int OfficeCode { get; set; }
+        [Display(Name = "report to")]
+        public int? ReportsTo { get; set; }
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]

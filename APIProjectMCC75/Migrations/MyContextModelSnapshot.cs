@@ -180,7 +180,7 @@ namespace APIProjectMCC75.Migrations
                         .HasColumnType("int")
                         .HasColumnName("office_code");
 
-                    b.Property<int>("ReportsTo")
+                    b.Property<int?>("ReportsTo")
                         .HasColumnType("int")
                         .HasColumnName("reports_to");
 
@@ -472,8 +472,7 @@ namespace APIProjectMCC75.Migrations
                     b.HasOne("APIProjectMCC75.Models.Employee", "ReportTo")
                         .WithMany("Employees")
                         .HasForeignKey("ReportsTo")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Office");
 

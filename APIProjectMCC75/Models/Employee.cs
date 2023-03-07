@@ -12,7 +12,7 @@ public class Employee
     [Required, Column("office_code")]
     public int OfficeCode { get; set; }
     [Column("reports_to")]
-    public int ReportsTo { get; set; }
+    public int? ReportsTo { get; set; }
     [Required, Column("first_name"), MaxLength(255)]
     public string FirstName { get; set; }
     [Column("last_name"), MaxLength(255)]

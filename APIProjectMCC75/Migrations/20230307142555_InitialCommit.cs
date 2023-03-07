@@ -72,7 +72,7 @@ namespace APIProjectMCC75.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     office_code = table.Column<int>(type: "int", nullable: false),
-                    reports_to = table.Column<int>(type: "int", nullable: false),
+                    reports_to = table.Column<int>(type: "int", nullable: true),
                     first_name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     last_name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),

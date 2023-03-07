@@ -8,9 +8,9 @@ namespace APIProjectMCC75.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : BaseController<int, Product, ProductRepository>
+    public class PaymentsController : BaseController<string, Payment, PaymentRepository>
     {
-        public ProductController(ProductRepository repository) : base(repository)
+        public PaymentsController(PaymentRepository repository) : base(repository)
         {
         }
     }

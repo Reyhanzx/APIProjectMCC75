@@ -6,7 +6,7 @@ namespace APIProjectMCC75.Models;
 
 [Table("tb_m_rey_product")]
 public class Product
-{
+{ 
     [Key, Column("id")]
     public int Id { get; set; }
     [Required, Column("productline_id")]
