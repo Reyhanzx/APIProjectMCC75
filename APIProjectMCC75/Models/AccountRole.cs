@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace API.Models
+namespace APIProjectMCC75.Models
 {
-    [Table("tb_tr_account_roles")]
+    [Table("tb_tr_rey_account_roles")]
     public class AccountRole
     {
         [Key, Column("id")]
@@ -14,12 +14,12 @@ namespace API.Models
         [Required, Column("role_id")]
         public int RoleId { get; set; }
 
-        ////relation n cardinality
-        //[JsonIgnore]
-        //[ForeignKey(nameof(AccountNik))]
-        //public Account? Account  { get; set; }
-        //[JsonIgnore]
-        //[ForeignKey(nameof(RoleId))]
-        //public Role? Role  { get; set; }
+        //relation n cardinality
+        [JsonIgnore]
+        [ForeignKey(nameof(AccountId))]
+        public Account? Account { get; set; }
+        [JsonIgnore]
+        [ForeignKey(nameof(RoleId))]
+        public Role? Role { get; set; }
     }
 }

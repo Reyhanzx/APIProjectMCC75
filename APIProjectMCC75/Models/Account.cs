@@ -2,20 +2,20 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace API.Models
+namespace APIProjectMCC75.Models
 {
-    [Table("tb_m_accounts")]
+    [Table("tb_m_rey_accounts")]
     public class Account
     {
         [Key, Column("id")]
         public int Id { get; set; }
         [Column("password"), MaxLength(255)]
-        public string Password { get; set; }
+        public string Password { get; set; } 
 
-        ////cardinalitty
-        //[JsonIgnore]
-        //public ICollection<AccountRole>? AccountRoles  { get; set; }
-        //[JsonIgnore]
-        //public Employee? Employee  { get; set; }
+        //cardinalitty
+        [JsonIgnore]
+        public ICollection<AccountRole>? AccountRoles { get; set; }
+        [JsonIgnore]
+        public Employee? Employee { get; set; }
     }
 }

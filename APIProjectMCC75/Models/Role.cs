@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace API.Models
+namespace APIProjectMCC75.Models
 {
-    [Table("tb_m_roles")]
+    [Table("tb_m_rey_roles")]
     public class Role
     {
         [Key, Column("id")]
@@ -13,7 +13,7 @@ namespace API.Models
         public string Name { get; set; }
 
         //cardinality
-        //[JsonIgnore]
-        //public ICollection<AccountRole>? AccountRole  { get; set; }
+        [JsonIgnore]
+        public ICollection<AccountRole>? AccountRole { get; set; }
     }
 }
