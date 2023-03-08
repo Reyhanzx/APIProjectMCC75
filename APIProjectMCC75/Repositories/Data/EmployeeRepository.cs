@@ -3,7 +3,7 @@ using APIProjectMCC75.Models;
 
 namespace APIProjectMCC75.Repositories.Data
 {
-    public class EmployeeRepository : GeneralRepository<int, Employee>
+    public class EmployeeRepository : GeneralRepository<string, Employee>
     {
         private readonly MyContext context;
 

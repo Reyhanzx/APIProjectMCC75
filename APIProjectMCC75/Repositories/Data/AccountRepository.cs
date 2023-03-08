@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIProjectMCC75.Repositories.Data
 {
-    public class AccountRepository : GeneralRepository<int, Account>
+    public class AccountRepository : GeneralRepository<string, Account>
     {
         private readonly MyContext context;
 
@@ -19,6 +19,7 @@ namespace APIProjectMCC75.Repositories.Data
             int result = 0;
             Employee employee = new Employee
             {
+                Id= registerVM.Id,
                 OfficeCode = registerVM.OfficeCode,
                 ReportsTo= registerVM.ReportsTo,
                 FirstName = registerVM.FirstName,
@@ -31,7 +32,7 @@ namespace APIProjectMCC75.Repositories.Data
 
             Account account = new Account
             {
-                Id = registerVM.OfficeCode,
+                Employee_Id = registerVM.Id,
                 Password = Hashing.HashPassword(registerVM.Password)
             };
             await context.Accounts.AddAsync(account);
@@ -39,7 +40,7 @@ namespace APIProjectMCC75.Repositories.Data
 
             AccountRole accountRole = new AccountRole
             {
-                AccountId = registerVM.OfficeCode,
+                AccountId = registerVM.Id,
                 RoleId = 2
             };
 
@@ -69,9 +70,9 @@ namespace APIProjectMCC75.Repositories.Data
         {
             var userdata = (from e in context.Employees
                             join a in context.Accounts
-                            on e.Id equals a.Id
+                            on e.Id equals a.Employee_Id
                             join ar in context.AccountRoles
-                            on a.Id equals ar.AccountId
+                            on a.Employee_Id equals ar.AccountId
                             join r in context.Roles
                             on ar.RoleId equals r.Id
                             where e.Email == key
@@ -87,8 +88,8 @@ namespace APIProjectMCC75.Repositories.Data
 
         public async Task<IEnumerable<string>> GetRolesById(string key)
         {
-            var getNik = context.Employees.FirstOrDefault(e => e.Email == key);
-            return await context.AccountRoles.Where(ar => ar.AccountId == getNik.Id).Join(
+            var getId = context.Employees.FirstOrDefault(e => e.Email == key);
+            return await context.AccountRoles.Where(ar => ar.AccountId == getId.Id).Join(
                 context.Roles,
                 ar => ar.RoleId,
                 r => r.Id,

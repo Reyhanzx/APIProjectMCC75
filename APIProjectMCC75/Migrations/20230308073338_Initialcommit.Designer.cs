@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIProjectMCC75.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230307142555_InitialCommit")]
-    partial class InitialCommit
+    [Migration("20230308073338_Initialcommit")]
+    partial class Initialcommit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,9 @@ namespace APIProjectMCC75.Migrations
 
             modelBuilder.Entity("APIProjectMCC75.Models.Account", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int")
-                        .HasColumnName("id");
+                    b.Property<string>("Employee_Id")
+                        .HasColumnType("nchar(3)")
+                        .HasColumnName("employee_id");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -37,7 +37,7 @@ namespace APIProjectMCC75.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("password");
 
-                    b.HasKey("Id");
+                    b.HasKey("Employee_Id");
 
                     b.ToTable("tb_m_rey_accounts");
                 });
@@ -51,9 +51,10 @@ namespace APIProjectMCC75.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int")
-                        .HasColumnName("account_id");
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasColumnType("nchar(3)")
+                        .HasColumnName("accountid");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int")
@@ -100,13 +101,15 @@ namespace APIProjectMCC75.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("country");
 
-                    b.Property<int>("CreditLimit")
+                    b.Property<string>("CreditLimit")
+                        .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("int")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("credit limit");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int")
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nchar(3)")
                         .HasColumnName("employee_id");
 
                     b.Property<string>("FirstName")
@@ -126,10 +129,10 @@ namespace APIProjectMCC75.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("phone number");
 
-                    b.Property<int>("PostalCode")
-                        .HasMaxLength(255)
-                        .HasColumnType("int")
-                        .HasColumnName("postal code");
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nchar(5)")
+                        .HasColumnName("postal_code");
 
                     b.Property<string>("State")
                         .IsRequired()
@@ -149,12 +152,9 @@ namespace APIProjectMCC75.Migrations
 
             modelBuilder.Entity("APIProjectMCC75.Models.Employee", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                    b.Property<string>("Id")
+                        .HasColumnType("nchar(3)")
                         .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -183,9 +183,9 @@ namespace APIProjectMCC75.Migrations
                         .HasColumnType("int")
                         .HasColumnName("office_code");
 
-                    b.Property<int?>("ReportsTo")
-                        .HasColumnType("int")
-                        .HasColumnName("reports_to");
+                    b.Property<string>("ReportsTo")
+                        .HasColumnType("nchar(3)")
+                        .HasColumnName("report to");
 
                     b.HasKey("Id");
 
@@ -427,7 +427,7 @@ namespace APIProjectMCC75.Migrations
                 {
                     b.HasOne("APIProjectMCC75.Models.Employee", "Employee")
                         .WithOne("Account")
-                        .HasForeignKey("APIProjectMCC75.Models.Account", "Id")
+                        .HasForeignKey("APIProjectMCC75.Models.Account", "Employee_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

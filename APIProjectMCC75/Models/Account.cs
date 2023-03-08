@@ -7,8 +7,8 @@ namespace APIProjectMCC75.Models
     [Table("tb_m_rey_accounts")]
     public class Account
     {
-        [Key, Column("id")]
-        public int Id { get; set; }
+        [Key, Column("employee_id", TypeName = "nchar(3)")]
+        public string Employee_Id { get; set; }
         [Column("password"), MaxLength(255)]
         public string Password { get; set; } 
 

@@ -38,9 +38,9 @@ public class MyContext : DbContext
         }).IsUnique();
         //Relasi one Employee ke one Account + menjadi Primary Key
         modelBuilder.Entity<Employee>()
-            .HasOne(e => e.Account)
-            .WithOne(a => a.Employee)
-            .HasForeignKey<Account>(fk => fk.Id);
+            .HasOne(a => a.Account)
+            .WithOne(e => e.Employee)
+            .HasForeignKey<Account>(fk => fk.Employee_Id);
 
         //tambah relasi many employee to one repotto
         modelBuilder.Entity<Employee>()

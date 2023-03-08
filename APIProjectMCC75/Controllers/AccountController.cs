@@ -16,12 +16,12 @@ namespace APIProjectMCC75.Controllers;
 [ApiController]
 public class AccountsController : ControllerBase
 {
-    private readonly AccountRepository accountRepository;
+    private readonly AccountRepository repository;
     private readonly IConfiguration configuration;
 
-    public AccountsController(AccountRepository accountRepository, IConfiguration configuration)
+    public AccountsController(AccountRepository repository, IConfiguration configuration)
     {
-        this.accountRepository = accountRepository;
+        this.repository = repository;
         this.configuration = configuration;
     }
 
@@ -30,7 +30,7 @@ public class AccountsController : ControllerBase
     {
         try
         {
-            var result = accountRepository.Register(registerVM);
+            var result = repository.Register(registerVM);
             if (result == null)
             {
                 return BadRequest(new
@@ -63,7 +63,7 @@ public class AccountsController : ControllerBase
     {
         try
         {
-            var result = await accountRepository.Login(loginVM);
+            var result = await repository.Login(loginVM);
             if (result == false)
             {
                 return BadRequest(new
@@ -74,8 +74,8 @@ public class AccountsController : ControllerBase
             }
             else
             {
-                var userdata = await accountRepository.GetUserdata(loginVM.Email);
-                var roles = await accountRepository.GetRolesById(loginVM.Email);
+                var userdata = await repository.GetUserdata(loginVM.Email);
+                var roles = await repository.GetRolesById(loginVM.Email);
                 var claims = new List<Claim>()
                 {
                     new Claim (ClaimTypes.Email, userdata.Email),

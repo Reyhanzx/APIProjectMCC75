@@ -7,12 +7,12 @@ namespace APIProjectMCC75.Models;
 [Table("tb_m_rey_employee")]
 public class Employee
 {
-    [Key, Column("id")]
-    public int Id { get; set; }
+    [Key, Column("id", TypeName = "nchar(3)")]
+    public string Id { get; set; }
     [Required, Column("office_code")]
     public int OfficeCode { get; set; }
-    [Column("reports_to")]
-    public int? ReportsTo { get; set; }
+    [Column("report to", TypeName = "nchar(3)")]
+    public string? ReportsTo { get; set; }
     [Required, Column("first_name"), MaxLength(255)]
     public string FirstName { get; set; }
     [Column("last_name"), MaxLength(255)]
@@ -26,7 +26,6 @@ public class Employee
     [JsonIgnore]
     public ICollection<Customer>? Customers { get; set; }
     [JsonIgnore]
-    [ForeignKey(nameof(Id))]
     public Account? Account { get; set; }
     [JsonIgnore]
     [ForeignKey(nameof(OfficeCode))]

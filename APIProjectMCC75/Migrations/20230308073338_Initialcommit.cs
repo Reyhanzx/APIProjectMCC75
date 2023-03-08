@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace APIProjectMCC75.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCommit : Migration
+    public partial class Initialcommit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -69,10 +69,9 @@ namespace APIProjectMCC75.Migrations
                 name: "tb_m_rey_employee",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<string>(type: "nchar(3)", nullable: false),
                     office_code = table.Column<int>(type: "int", nullable: false),
-                    reports_to = table.Column<int>(type: "int", nullable: true),
+                    reportto = table.Column<string>(name: "report to", type: "nchar(3)", nullable: true),
                     first_name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     last_name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
@@ -82,8 +81,8 @@ namespace APIProjectMCC75.Migrations
                 {
                     table.PrimaryKey("PK_tb_m_rey_employee", x => x.id);
                     table.ForeignKey(
-                        name: "FK_tb_m_rey_employee_tb_m_rey_employee_reports_to",
-                        column: x => x.reports_to,
+                        name: "FK_tb_m_rey_employee_tb_m_rey_employee_report to",
+                        column: x => x.reportto,
                         principalTable: "tb_m_rey_employee",
                         principalColumn: "id");
                     table.ForeignKey(
@@ -98,15 +97,15 @@ namespace APIProjectMCC75.Migrations
                 name: "tb_m_rey_accounts",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    employee_id = table.Column<string>(type: "nchar(3)", nullable: false),
                     password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_m_rey_accounts", x => x.id);
+                    table.PrimaryKey("PK_tb_m_rey_accounts", x => x.employee_id);
                     table.ForeignKey(
-                        name: "FK_tb_m_rey_accounts_tb_m_rey_employee_id",
-                        column: x => x.id,
+                        name: "FK_tb_m_rey_accounts_tb_m_rey_employee_employee_id",
+                        column: x => x.employee_id,
                         principalTable: "tb_m_rey_employee",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -118,7 +117,7 @@ namespace APIProjectMCC75.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    employee_id = table.Column<int>(type: "int", nullable: false),
+                    employee_id = table.Column<string>(type: "nchar(3)", nullable: false),
                     firstname = table.Column<string>(name: "first name", type: "nvarchar(255)", maxLength: 255, nullable: false),
                     lastname = table.Column<string>(name: "last name", type: "nvarchar(255)", maxLength: 255, nullable: true),
                     phonenumber = table.Column<string>(name: "phone number", type: "nvarchar(255)", maxLength: 255, nullable: false),
@@ -126,9 +125,9 @@ namespace APIProjectMCC75.Migrations
                     address2 = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     city = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     state = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    postalcode = table.Column<int>(name: "postal code", type: "int", maxLength: 255, nullable: false),
+                    postal_code = table.Column<string>(type: "nchar(5)", nullable: false),
                     country = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    creditlimit = table.Column<int>(name: "credit limit", type: "int", maxLength: 255, nullable: false)
+                    creditlimit = table.Column<string>(name: "credit limit", type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -147,17 +146,17 @@ namespace APIProjectMCC75.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    account_id = table.Column<int>(type: "int", nullable: false),
+                    accountid = table.Column<string>(type: "nchar(3)", nullable: false),
                     role_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tb_tr_rey_account_roles", x => x.id);
                     table.ForeignKey(
-                        name: "FK_tb_tr_rey_account_roles_tb_m_rey_accounts_account_id",
-                        column: x => x.account_id,
+                        name: "FK_tb_tr_rey_account_roles_tb_m_rey_accounts_accountid",
+                        column: x => x.accountid,
                         principalTable: "tb_m_rey_accounts",
-                        principalColumn: "id",
+                        principalColumn: "employee_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_tb_tr_rey_account_roles_tb_m_rey_roles_role_id",
@@ -272,9 +271,9 @@ namespace APIProjectMCC75.Migrations
                 column: "office_code");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_m_rey_employee_reports_to",
+                name: "IX_tb_m_rey_employee_report to",
                 table: "tb_m_rey_employee",
-                column: "reports_to");
+                column: "report to");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tb_m_rey_office_phone number",
@@ -298,9 +297,9 @@ namespace APIProjectMCC75.Migrations
                 column: "ProductLineId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_tr_rey_account_roles_account_id",
+                name: "IX_tb_tr_rey_account_roles_accountid",
                 table: "tb_tr_rey_account_roles",
-                column: "account_id");
+                column: "accountid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tb_tr_rey_account_roles_role_id",
