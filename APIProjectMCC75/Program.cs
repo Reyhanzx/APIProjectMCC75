@@ -96,23 +96,23 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+//builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 
-app.UseStatusCodePages(async context =>
-{
-    var response = context.HttpContext.Response;
+//app.UseStatusCodePages(async context =>
+//{
+//    var response = context.HttpContext.Response;
 
-    if (response.StatusCode.Equals((int)HttpStatusCode.Unauthorized))
-    {
-        response.Redirect("/Unauthorized");
-    }
-    else if (response.StatusCode.Equals((int)HttpStatusCode.Forbidden))
-    {
-        response.Redirect("/Forbidden");
-    }
-});
+//    if (response.StatusCode.Equals((int)HttpStatusCode.Unauthorized))
+//    {
+//        response.Redirect("/Unauthorized");
+//    }
+//    else if (response.StatusCode.Equals((int)HttpStatusCode.Forbidden))
+//    {
+//        response.Redirect("/Forbidden");
+//    }
+//});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

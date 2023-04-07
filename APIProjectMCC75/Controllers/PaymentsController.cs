@@ -9,7 +9,7 @@ namespace APIProjectMCC75.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PaymentsController : BaseController<string, Payment, PaymentRepository>
     {
         public PaymentsController(PaymentRepository repository) : base(repository)

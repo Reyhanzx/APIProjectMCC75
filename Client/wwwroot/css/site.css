@@ -16,3 +16,60 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#dotaCol {
+    color: lightgreen;
+    font-weight: bold;
+}
+
+#myTable {
+    border: 3px ;
+    border-color: black;
+
+}
+
+thead {
+    color: white;
+    background-color: maroon;
+}
+
+#tbodyDota {
+    color: whitesmoke;
+}
+
+/*.buttons-excel {
+    color: greenyellow;
+    font-weight: bold;
+    background-color: black;
+}
+
+.buttons-pdf {
+    color: red;
+    font-weight: bold;
+    background-color: black;
+}
+
+.buttons-print {
+    color: sandybrown;
+    font-weight: bold;
+    background-color: black;
+}
+
+.buttons-colvis {
+    font-weight: bold;
+    background-color: black;
+}*/
+
+/*#dota {
+    border: 3px;
+    border-color: white;
+    background-color: red;
+}*/
+
+/*.modal-content {
+    background-color: red;
+}*/
+
+#modalDota{
+    color:black
+}

@@ -26,7 +26,7 @@ public class BaseController<Key, Entity, Repository> : ControllerBase
             return Ok(new
             {
                 StatusCode = 200,
-                Massage = "kosong",
+                Message = "kosong",
             });
         }
         else
@@ -34,7 +34,7 @@ public class BaseController<Key, Entity, Repository> : ControllerBase
             return Ok(new
             {
                 StatusCode = 200,
-                Massage = "ada",
+                Message = "ada",
                 Data = result
             });
         }
@@ -52,7 +52,7 @@ public class BaseController<Key, Entity, Repository> : ControllerBase
                 return Ok(new
                 {
                     StatusCode = 200,
-                    Massage = "kosong",
+                    Message = "kosong",
                 });
             }
             else
@@ -60,7 +60,7 @@ public class BaseController<Key, Entity, Repository> : ControllerBase
                 return Ok(new
                 {
                     StatusCode = 200,
-                    Massage = "ada",
+                    Message = "ada",
                     Data = result
                 });
             }
@@ -146,7 +146,7 @@ public class BaseController<Key, Entity, Repository> : ControllerBase
         }
     }
 
-    [HttpDelete]
+    [HttpDelete("{key}")]
     public async Task<ActionResult> Delete(Key key)
     {
         var result = await repository.Delete(key);
@@ -163,7 +163,7 @@ public class BaseController<Key, Entity, Repository> : ControllerBase
             return Ok(new
             {
                 StatusCode = 200,
-                Massage = "ada",
+                Message = "ada",
                 Data = result
             });
         }

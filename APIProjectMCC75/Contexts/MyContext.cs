@@ -36,7 +36,7 @@ public class MyContext : DbContext
         {
             c.PhoneNumber
         }).IsUnique();
-        //Relasi one Employee ke one Account + menjadi Primary Key
+
         modelBuilder.Entity<Employee>()
             .HasOne(a => a.Account)
             .WithOne(e => e.Employee)

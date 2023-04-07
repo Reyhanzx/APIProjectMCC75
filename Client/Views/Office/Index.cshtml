@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "_AdminLayout";
+}
+
+<h1>Office List</h1>
+@* <button class="btn btn-danger" data-toggle="modal" data-target="#modalAddDaerah"><i class="fas fa-plus"></i> Tambah</button>*@
+@*<div class="card-header">
+    <button class="btn btn-danger" data-toggle="modal" data-target="#modalAddDaerah"><i class="fas fa-plus"></i> Tambah</button>
+</div>*@
+<div id="plus"></div>
+<table id="myTable" class="table table-hover ">
+    <thead class="table-dark">
+        <tr>
+            <th>No</th>
+            <th>city</th>
+            <th>phoneNumber</th>
+            <th>address1</th>
+            <th>address2</th>
+            <th>state</th>
+            <th>country</th>
+            <th>postalCode</th>
+            <th>territory</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalDota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+            <div class="modal-header" >
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+               @* <form id="create" method="post" action="">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="city" id="city" name="city" placeholder="City" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" class="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address1">Address 1</label>
+                        <input type="text" class="address1" id="address1" name="address1" placeholder="Address 1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address2">Address 2</label>
+                        <input type="text" class="address2" id="address2" name="address2" placeholder="Address 2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" class="state" id="state" name="state" placeholder="State" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" class="country" id="country" name="country" placeholder="Country" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">Postal code</label>
+                        <input type="text" class="postalCode" id="postalCode" name="postalCode" placeholder="Postal code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="territory">Territory</label>
+                        <input type="text" class="territory" id="territory" name="territory" placeholder="Territory" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="store">Submit</button>
+                </form>*@<form>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input class="form-control" type="text"  id="city" name="city" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input class="form-control" type="text"  id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address1">Address 1</label>
+                            <input class="form-control" type="text"  id="address1" name="address1" placeholder="Address 1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address2">Address 2</label>
+                            <input class="form-control" type="text"  id="address2" name="address2" placeholder="Address 2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input class="form-control" type="text"  id="state" name="state" placeholder="State" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input class="form-control" type="text"  id="country" name="country" placeholder="Country" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalCode">Postal code</label>
+                            <input class="form-control" type="text"  id="postalCode" name="postalCode" placeholder="Postal code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="territory">Territory</label>
+                            <input class="form-control" type="text"  id="territory" name="territory" placeholder="Territory" required>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" id="store">Submit</button>
+                </div>
+      @*          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                @* <button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+        <script src="~/js/coba.js" asp-append-version="true"></script>
+}
